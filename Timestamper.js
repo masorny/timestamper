@@ -1,8 +1,5 @@
-/* 
-    Desarrollado y mantenido por Keew
-    Trátame con cariño!
-*/
 const { floor, abs } = Math;
+
 const langs = {
     es: {
         now: "ahora",
@@ -74,6 +71,7 @@ const langs = {
 
 class Timestamper {
     /**
+     * Creates a new Instance of Timestamp.
      * @param {number} timestamp Timestamp in milliseconds.
      * @param {"es"|"en"} [lang] Language time (set by default as `es`).
      */
@@ -81,17 +79,32 @@ class Timestamper {
         if ((!timestamp && typeof timestamp !== 'number') && isNaN(new Date(timestamp))) {
             throw new Error('Invalid Timestamp');
         };
-        
-        const date = Date.now();
-
-        this._timestampPosition = date - new Date(timestamp).getTime();
-
-        this._timestamp = abs(this._timestampPosition);
-
-        this.parsedTime = 0;
 
         /**
-         * Language.
+         * Timestamp defined.
+         */
+        this.timestamp = timestamp;
+
+        /**
+         * Determines the time position.
+         * @private
+         */
+        this._timestampPosition = Date.now() - new Date(timestamp).getTime();
+
+        /**
+         * Relative timestamp in absolute value.
+         * @private
+         */
+        this._timestamp = abs(this._timestampPosition);
+
+        /**
+         * Highest time value.
+         * @private
+         */
+        this._parsedTime = 0;
+
+        /**
+         * Time language.
          */
         this.lang = lang;
 
@@ -118,31 +131,31 @@ class Timestamper {
         };
 
         if (decades > 0) {
-            this.parsedTime = decades;
+            this._parsedTime = decades;
             this.timeUnity = decades > 1 ? langs[this.lang].decades.plural : langs[this.lang].decades.singular;
         }
         else if (years > 0) {
-            this.parsedTime = years;
+            this._parsedTime = years;
             this.timeUnity = years > 1 ? langs[this.lang].years.plural : langs[this.lang].years.singular;
         }
         else if (months > 0) {
-            this.parsedTime = months;
+            this._parsedTime = months;
             this.timeUnity = months > 1 ? langs[this.lang].months.plural : langs[this.lang].months.singular;
         }
         else if (days > 0) {
-            this.parsedTime = days;
+            this._parsedTime = days;
             this.timeUnity = days > 1 ? langs[this.lang].days.plural : langs[this.lang].days.singular;
         }
         else if (hours > 0) {
-            this.parsedTime = hours;
+            this._parsedTime = hours;
             this.timeUnity = hours > 1 ? langs[this.lang].hours.plural : langs[this.lang].hours.singular;
         }
         else if (minutes > 0) {
-            this.parsedTime = minutes;
+            this._parsedTime = minutes;
             this.timeUnity = minutes > 1 ? langs[this.lang].minutes.plural : langs[this.lang].minutes.singular;
         }
         else {
-            this.parsedTime = seconds;
+            this._parsedTime = seconds;
             this.timeUnity = seconds > 1 ? langs[this.lang].seconds.plural : langs[this.lang].seconds.singular;
         }
 
@@ -150,7 +163,7 @@ class Timestamper {
     }
 
     _getPosition() {
-        if (this.parsedTime === 0) {
+        if (this._parsedTime === 0) {
             return langs[this.lang].now;
         }
 
@@ -170,15 +183,15 @@ class Timestamper {
      * Timestamper.toString() = "hace 1 día"
      */
     toString() {
-        if (this.parsedTime == 0) {
+        if (this._parsedTime == 0) {
             return langs[this.lang].now;
         }
 
         if (this.lang === "en") {
-            return `${this.parsedTime} ${this.timeUnity} ${this._getPosition()}`;
+            return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
         }
 
-        return `${this._getPosition()} ${this.parsedTime} ${this.timeUnity}`;
+        return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
     }
 
     /**
@@ -190,7 +203,7 @@ class Timestamper {
      * Timestamper.toStringTime() = "1 día"
      */
     toStringTime() {
-        return `${this.parsedTime} ${this.timeUnity}`;
+        return `${this._parsedTime} ${this.timeUnity}`;
     }
 
     /**

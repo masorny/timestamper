@@ -41,13 +41,34 @@ const langs = {
         now: "now",
         agoTime: "ago",
         inTime: "in",
-        seconds: { singular: "second", plural: "seconds" }, 
-        minutes: { singular: "minute", plural: "minutes" }, 
-        hours:   { singular: "hour",   plural: "hours"   }, 
-        days:    { singular: "day",    plural: "days"    }, 
-        months:  { singular: "month",  plural: "months"  }, 
-        years:   { singular: "year",   plural: "years"   }, 
-        decades: { singular: "decade", plural: "decades" }
+        seconds: {
+            singular: "second",
+            plural: "seconds" 
+        }, 
+        minutes: {
+            singular: "minute",
+            plural: "minutes" 
+        }, 
+        hours:   {
+            singular: "hour",
+            plural: "hours"   
+        }, 
+        days:    {
+            singular: "day",
+            plural: "days"    
+        }, 
+        months:  {
+            singular: "month",
+            plural: "months"  
+        }, 
+        years:   {
+            singular: "year",
+            plural: "years"   
+        }, 
+        decades: {
+            singular: "decade",
+            plural: "decades" 
+        }
     }
 };
 

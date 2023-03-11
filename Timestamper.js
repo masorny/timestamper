@@ -1,72 +1,6 @@
-const { floor, abs } = Math;
-
 const langs = {
-    es: {
-        now: "ahora",
-        agoTime: "hace",
-        inTime: "en",
-        seconds: {
-            singular: "segundo",
-            plural: "segundos" 
-        }, 
-        minutes: {
-            singular: "minuto",
-            plural: "minutos" 
-        }, 
-        hours: {
-            singular: "hora",
-            plural: "horas"   
-        }, 
-        days: {
-            singular: "día",
-            plural: "dias"    
-        }, 
-        months: {
-            singular: "mes",
-            plural: "meses"  
-        }, 
-        years: {
-            singular: "año",
-            plural: "años"   
-        }, 
-        decades: {
-            singular: "decada",
-            plural: "decadas" 
-        }
-    },
-    en: {
-        now: "now",
-        agoTime: "ago",
-        inTime: "in",
-        seconds: {
-            singular: "second",
-            plural: "seconds" 
-        }, 
-        minutes: {
-            singular: "minute",
-            plural: "minutes" 
-        }, 
-        hours:   {
-            singular: "hour",
-            plural: "hours"   
-        }, 
-        days:    {
-            singular: "day",
-            plural: "days"    
-        }, 
-        months:  {
-            singular: "month",
-            plural: "months"  
-        }, 
-        years:   {
-            singular: "year",
-            plural: "years"   
-        }, 
-        decades: {
-            singular: "decade",
-            plural: "decades" 
-        }
-    }
+    en: require("./langs/en.json"),
+    es: require("./langs/es.json")
 };
 
 class Timestamper {
@@ -95,7 +29,7 @@ class Timestamper {
          * Relative timestamp in absolute value.
          * @private
          */
-        this._timestamp = abs(this._timestampPosition);
+        this._timestamp = Math.abs(this._timestampPosition);
 
         /**
          * Highest time value.
@@ -113,13 +47,13 @@ class Timestamper {
     }
 
     _parseTimestamp() {
-        const seconds = floor(this._timestamp / 1000),
-              minutes = floor(seconds / 60),
-              hours   = floor(minutes / 60),
-              days    = floor(hours / 24),
-              months  = floor(days / (365 / 12)),
-              years   = floor(months / 12),
-              decades = floor(years / 10);
+        const seconds = Math.floor(this._timestamp / 1000),
+              minutes = Math.floor(seconds / 60),
+              hours   = Math.floor(minutes / 60),
+              days    = Math.floor(hours / 24),
+              months  = Math.floor(days / (365 / 12)),
+              years   = Math.floor(months / 12),
+              decades = Math.floor(years / 10);
 
         this.parsedTimestamp = {
             seconds,

@@ -1,0 +1,20 @@
+{
+  "name": "timestamper",
+  "version": "1.1.0",
+  "description": "<div align=\"center\">\r     <h1>Timestamper</h1>\r     <p>Converts timestamp to relative time.</p>\r </div>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keewsito/timestamper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keewsito/timestamper/issues"
+  },
+  "homepage": "https://github.com/keewsito/timestamper#readme"
+}

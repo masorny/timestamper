@@ -1,0 +1,33 @@
+{
+    "now": "ahora",
+    "agoTime": "hace",
+    "inTime": "en",
+    "seconds": {
+        "singular": "segundo",
+        "plural": "segundos" 
+    }, 
+    "minutes": {
+        "singular": "minuto",
+        "plural": "minutos" 
+    }, 
+    "hours": {
+        "singular": "hora",
+        "plural": "horas"   
+    }, 
+    "days": {
+        "singular": "día",
+        "plural": "dias"    
+    }, 
+    "months": {
+        "singular": "mes",
+        "plural": "meses"  
+    }, 
+    "years": {
+        "singular": "año",
+        "plural": "años"   
+    }, 
+    "decades": {
+        "singular": "decada",
+        "plural": "decadas" 
+    }
+}

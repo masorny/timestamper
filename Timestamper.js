@@ -157,47 +157,6 @@ class Timestamper {
         return `${this._parsedTime} ${this.timeUnity}`;
     }
 
-    /**
-     * Converts the Structure into Counter time.
-     * @example
-     * Timestamper.toStringCounter() = "0:00"
-     * Timestamper.toStringCounter() = "1:00"
-     * Timestamper.toStringCounter() = "15:30"
-     * Timestamper.toStringCounter() = "1:00:00"
-     * Timestamper.toStringCounter() = "1:00:00:00"
-     */
-    toStringCounter() {
-        var {
-            seconds,
-            minutes,
-            hours,
-            days,
-            months,
-            years,
-            decades
-        } = this._operations.operation1(this._timestamp);
-
-        var parsedTime = [
-            decades,
-            years % 10,
-            months % 12,
-            Math.floor(days % 30.4167),
-            hours % 24,
-
-            /* Priority */
-            minutes % 60,
-            seconds % 60
-        ];
-
-        var filteredTime = parsedTime.filter(!(time < 1 && index < 5));
-
-        filteredTime = filteredTime.map((time, index) => {
-                return time < 10 && index > 0 ? `0${time}` : String(time);
-        });
-
-        return filteredTime.join(":");
-    }
-
     getYears() {
         return this.parsedTimestamp.years;
     }

@@ -10,7 +10,7 @@ class Timestamper {
      * @param {"es"|"en"} [lang] Language time (set by default as `es`).
      */
     constructor(timestamp, lang = "es") {
-        if ((!timestamp && typeof timestamp !== 'number') || isNaN(new Date(timestamp))) {
+        if ((!timestamp && typeof timestamp !== 'number') || isNaN(timestamp) || !isFinite(timestamp)) {
             throw new Error('Invalid Timestamp');
         };
 
@@ -23,7 +23,7 @@ class Timestamper {
          * Determines the time position.
          * @private
          */
-        this._timestampPosition = Date.now() - new Date(timestamp).getTime();
+        this._timestampPosition = Date.now() - timestamp;
 
         /**
          * Relative timestamp in absolute value.
@@ -48,13 +48,15 @@ class Timestamper {
      * @private
      */
     _parseTimestamp() {
-        const seconds = Math.floor(this._timestamp / 1000),
-              minutes = Math.floor(seconds / 60),
-              hours   = Math.floor(minutes / 60),
-              days    = Math.floor(hours / 24),
-              months  = Math.floor(days / (365 / 12)),
-              years   = Math.floor(months / 12),
-              decades = Math.floor(years / 10);
+        const seconds     = Math.floor(this._timestamp / 1000),
+              minutes     = Math.floor(seconds / 60),
+              hours       = Math.floor(minutes / 60),
+              days        = Math.floor(hours / 24),
+              months      = Math.floor(days / (365 / 12)),
+              years       = Math.floor(months / 12),
+              decades     = Math.floor(years / 10),
+              centuries   = Math.floor(decades / 10),
+              millenniums = Math.floor(centuries / 10);
 
         this.parsedTimestamp = {
             seconds,
@@ -62,10 +64,21 @@ class Timestamper {
             hours,
             days,
             months,
-            decades 
+            years,
+            decades,
+            centuries,
+            millenniums
         };
 
-        if (decades > 0) {
+        if (millenniums > 0) {
+            this._parsedTime = millenniums;
+            this.timeUnity = millenniums > 1 ? langs[this.lang].millenniums.plural : langs[this.lang].millenniums.singular;
+        }
+        else if (centuries > 0) {
+            this._parsedTime = centuries;
+            this.timeUnity = centuries > 1 ? langs[this.lang].centuries.plural : langs[this.lang].centuries.singular;
+        }
+        else if (decades > 0) {
             this._parsedTime = decades;
             this.timeUnity = decades > 1 ? langs[this.lang].decades.plural : langs[this.lang].decades.singular;
         }
@@ -183,6 +196,10 @@ class Timestamper {
         });
 
         return filteredTime.join(":");
+    }
+
+    getYears() {
+        return this.parsedTimestamp.years;
     }
 }
 

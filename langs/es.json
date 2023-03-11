@@ -29,5 +29,13 @@
     "decades": {
         "singular": "decada",
         "plural": "decadas" 
+    },
+    "centuries": {
+        "singular": "siglo",
+        "plural": "siglos"
+    },
+    "millenniums": {
+        "singular": "milenio",
+        "plural": "milenios"
     }
 }

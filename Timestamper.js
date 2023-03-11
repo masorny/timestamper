@@ -15,6 +15,11 @@ class Timestamper {
         }
 
         /**
+         * Time language.
+         */
+        this.lang = lang;
+
+        /**
          * Timestamp defined.
          */
         this.timestamp = timestamp;
@@ -37,9 +42,19 @@ class Timestamper {
         this._parsedTime = 0;
 
         /**
-         * Time language.
+         * @private
          */
-        this.lang = lang;
+        this._parsedTimestamp = {
+            seconds: 0, 
+            minutes: 0,   
+            hours: 0,   
+            days: 0,    
+            months: 0,    
+            years: 0,
+            decades: 0, 
+            centuries: 0, 
+            millenniums: 0
+        };
 
         this._parseTimestamp();
     }
@@ -58,7 +73,7 @@ class Timestamper {
               centuries   = Math.floor(decades / 10),
               millenniums = Math.floor(centuries / 10);
 
-        this.parsedTimestamp = {
+        this._parsedTimestamp = {
             seconds, minutes,   hours,   
             days,    months,    years,
             decades, centuries, millenniums
@@ -105,6 +120,7 @@ class Timestamper {
     }
 
     /**
+     * Returns the time position (Past, Present, Future).
      * @private
      */
     _getPosition() {
@@ -133,7 +149,12 @@ class Timestamper {
         }
 
         if (this.lang === "en") {
-            return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
+            if (this._timestampPosition < 0) {
+                return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
+            }
+            else {
+                return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
+            }
         }
 
         return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
@@ -151,8 +172,46 @@ class Timestamper {
         return `${this._parsedTime} ${this.timeUnity}`;
     }
 
+    /**
+     * Returns elapsed Years.
+     */
     getYears() {
-        return this.parsedTimestamp.years;
+        return this._parsedTimestamp.years;
+    }
+
+    /**
+     * Returns elapsed Months.
+     */
+    getMonths() {
+        return this._parsedTimestamp.months;
+    }
+
+    /**
+     * Returns elapsed Days.
+     */
+    getDays() {
+        return this._parsedTimestamp.days;
+    }
+
+    /**
+     * Returns elapsed Hours.
+     */
+    getHours() {
+        return this._parsedTimestamp.hours;
+    }
+
+    /**
+     * Returns elapsed Minutes.
+     */
+    getMinutes() {
+        return this._parsedTimestamp.minutes;
+    }
+    
+    /**
+     * Returns elapsed Seconds.
+     */
+    getSeconds() {
+        return this._parsedTimestamp.seconds;
     }
 }
 

@@ -109,12 +109,12 @@ class Timestamper {
     }
 
     /**
-     * Converts the Structure into readable time.
+     * Returns readable time.
      * @example
-     * Timestamper.toString() = "ahora"
-     * Timestamper.toString() = "hace 1 minuto"
-     * Timestamper.toString() = "hace 2 minutos"
-     * Timestamper.toString() = "hace 1 día"
+     * Timestamper.toString() = "now"
+     * Timestamper.toString() = "1 minute ago"
+     * Timestamper.toString() = "2 minutes ago"
+     * Timestamper.toString() = "1 day ago"
      */
     toString() {
         if (this._parsedTime == 0) {
@@ -129,12 +129,12 @@ class Timestamper {
     }
 
     /**
-     * Converts the Structure into simplest readable time.
+     * Returns simplest readable time.
      * @example
-     * Timestamper.toStringTime() = "ahora"
-     * Timestamper.toStringTime() = "1 minuto"
-     * Timestamper.toStringTime() = "2 minutos"
-     * Timestamper.toStringTime() = "1 día"
+     * Timestamper.toStringTime() = "now"
+     * Timestamper.toStringTime() = "1 minute ago"
+     * Timestamper.toStringTime() = "2 minutes ago"
+     * Timestamper.toStringTime() = "1 day ago"
      */
     toStringTime() {
         return `${this._parsedTime} ${this.timeUnity}`;

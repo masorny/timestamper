@@ -12,7 +12,7 @@ class Timestamper {
     constructor(timestamp, lang = "es") {
         if ((!timestamp && typeof timestamp !== 'number') || isNaN(timestamp) || !isFinite(timestamp)) {
             throw new Error('Invalid Timestamp');
-        };
+        }
 
         /**
          * Timestamp defined.
@@ -59,15 +59,9 @@ class Timestamper {
               millenniums = Math.floor(centuries / 10);
 
         this.parsedTimestamp = {
-            seconds,
-            minutes,
-            hours,
-            days,
-            months,
-            years,
-            decades,
-            centuries,
-            millenniums
+            seconds, minutes,   hours,   
+            days,    months,    years,
+            decades, centuries, millenniums
         };
 
         if (millenniums > 0) {

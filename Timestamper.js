@@ -10,7 +10,7 @@ class Timestamper {
      * @param {"es"|"en"} [lang] Language time (set by default as `es`).
      */
     constructor(timestamp, lang = "es") {
-        if ((!timestamp && typeof timestamp !== 'number') && isNaN(new Date(timestamp))) {
+        if ((!timestamp && typeof timestamp !== 'number') || isNaN(new Date(timestamp))) {
             throw new Error('Invalid Timestamp');
         };
 
@@ -32,7 +32,6 @@ class Timestamper {
         this._timestamp = Math.abs(this._timestampPosition);
 
         /**
-         * Highest time value.
          * @private
          */
         this._parsedTime = 0;
@@ -42,10 +41,12 @@ class Timestamper {
          */
         this.lang = lang;
 
-        // Initializes the conversion.
         this._parseTimestamp();
     }
 
+    /**
+     * @private
+     */
     _parseTimestamp() {
         const seconds = Math.floor(this._timestamp / 1000),
               minutes = Math.floor(seconds / 60),
@@ -96,6 +97,9 @@ class Timestamper {
         return this;
     }
 
+    /**
+     * @private
+     */
     _getPosition() {
         if (this._parsedTime === 0) {
             return langs[this.lang].now;

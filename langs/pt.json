@@ -1,0 +1,41 @@
+{
+    "now": "agora",
+    "agoTime": "atrás",
+    "inTime": "em",
+    "seconds": {
+        "singular": "segundo",
+        "plural": "segundos" 
+    }, 
+    "minutes": {
+        "singular": "minuto",
+        "plural": "minutos" 
+    }, 
+    "hours": {
+        "singular": "hora",
+        "plural": "horas"   
+    }, 
+    "days": {
+        "singular": "dia",
+        "plural": "dias"    
+    }, 
+    "months": {
+        "singular": "mes",
+        "plural": "meses"  
+    }, 
+    "years": {
+        "singular": "ano",
+        "plural": "anos"   
+    }, 
+    "decades": {
+        "singular": "década",
+        "plural": "décadas" 
+    },
+    "centuries": {
+        "singular": "século",
+        "plural": "séculos"
+    },
+    "millenniums": {
+        "singular": "milénio",
+        "plural": "milénios"
+    }
+}

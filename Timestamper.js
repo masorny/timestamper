@@ -1,13 +1,18 @@
 const langs = {
     en: require("./langs/en.json"),
-    es: require("./langs/es.json")
+    es: require("./langs/es.json"),
+    pt: require("./langs/pt.json")
 };
 
 class Timestamper {
     /**
+     * @typedef {"es"|"en"|"pt"} Languages
+     */
+
+    /**
      * Creates a new Instance of Timestamp.
      * @param {number} timestamp Timestamp in milliseconds.
-     * @param {"es"|"en"} [lang] Language time (set by default as `es`).
+     * @param {Languages} [lang] Language time (set by default as `es`).
      */
     constructor(timestamp, lang = "es") {
         if ((!timestamp && typeof timestamp !== 'number') || isNaN(timestamp) || !isFinite(timestamp)) {
@@ -148,13 +153,19 @@ class Timestamper {
             return langs[this.lang].now;
         }
 
-        if (this.lang === "en") {
-            if (this._timestampPosition < 0) {
-                return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
-            }
-            else {
+        switch(this.lang) {
+            case "en":
+                if (this._timestampPosition < 0) {
+                    return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
+                }
+
                 return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
-            }
+            case "pt":
+                if (this._timestampPosition < 0) {
+                    return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
+                }
+
+                return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
         }
 
         return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;

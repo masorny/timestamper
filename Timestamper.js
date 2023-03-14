@@ -68,57 +68,51 @@ class Timestamper {
      * @private
      */
     _parseTimestamp() {
-        const seconds     = Math.floor(this._timestamp / 1000),
-              minutes     = Math.floor(seconds / 60),
-              hours       = Math.floor(minutes / 60),
-              days        = Math.floor(hours / 24),
-              months      = Math.floor(days / (365 / 12)),
-              years       = Math.floor(months / 12),
-              decades     = Math.floor(years / 10),
-              centuries   = Math.floor(decades / 10),
-              millenniums = Math.floor(centuries / 10);
+        this._parsedTimestamp.seconds     = Math.floor(this._timestamp / 1000);
+        this._parsedTimestamp.minutes     = Math.floor(this._parsedTimestamp.seconds / 60);
+        this._parsedTimestamp.hours       = Math.floor(this._parsedTimestamp.minutes / 60);
+        this._parsedTimestamp.days        = Math.floor(this._parsedTimestamp.hours / 24);
+        this._parsedTimestamp.months      = Math.floor(this._parsedTimestamp.days / (365 / 12));
+        this._parsedTimestamp.years       = Math.floor(this._parsedTimestamp.months / 12);
+        this._parsedTimestamp.decades     = Math.floor(this._parsedTimestamp.years / 10);
+        this._parsedTimestamp.centuries   = Math.floor(this._parsedTimestamp.decades / 10);
+        this._parsedTimestamp.millenniums = Math.floor(this._parsedTimestamp.centuries / 10);
 
-        this._parsedTimestamp = {
-            seconds, minutes,   hours,   
-            days,    months,    years,
-            decades, centuries, millenniums
-        };
-
-        if (millenniums > 0) {
-            this._parsedTime = millenniums;
-            this.timeUnity = millenniums > 1 ? langs[this.lang].millenniums.plural : langs[this.lang].millenniums.singular;
+        if (this._parsedTimestamp.millenniums > 0) {
+            this._parsedTime = this._parsedTimestamp.millenniums;
+            this.timeUnity = this._parsedTimestamp.millenniums > 1 ? langs[this.lang].millenniums.plural : langs[this.lang].millenniums.singular;
         }
-        else if (centuries > 0) {
-            this._parsedTime = centuries;
-            this.timeUnity = centuries > 1 ? langs[this.lang].centuries.plural : langs[this.lang].centuries.singular;
+        else if (this._parsedTimestamp.centuries > 0) {
+            this._parsedTime = this._parsedTimestamp.centuries;
+            this.timeUnity = this._parsedTimestamp.centuries > 1 ? langs[this.lang].centuries.plural : langs[this.lang].centuries.singular;
         }
-        else if (decades > 0) {
-            this._parsedTime = decades;
-            this.timeUnity = decades > 1 ? langs[this.lang].decades.plural : langs[this.lang].decades.singular;
+        else if (this._parsedTimestamp.decades > 0) {
+            this._parsedTime = this._parsedTimestamp.decades;
+            this.timeUnity = this._parsedTimestamp.decades > 1 ? langs[this.lang].decades.plural : langs[this.lang].decades.singular;
         }
-        else if (years > 0) {
-            this._parsedTime = years;
-            this.timeUnity = years > 1 ? langs[this.lang].years.plural : langs[this.lang].years.singular;
+        else if (this._parsedTimestamp.years > 0) {
+            this._parsedTime = this._parsedTimestamp.years;
+            this.timeUnity = this._parsedTimestamp.years > 1 ? langs[this.lang].years.plural : langs[this.lang].years.singular;
         }
-        else if (months > 0) {
-            this._parsedTime = months;
-            this.timeUnity = months > 1 ? langs[this.lang].months.plural : langs[this.lang].months.singular;
+        else if (this._parsedTimestamp.months > 0) {
+            this._parsedTime = this._parsedTimestamp.months;
+            this.timeUnity = this._parsedTimestamp.months > 1 ? langs[this.lang].months.plural : langs[this.lang].months.singular;
         }
-        else if (days > 0) {
-            this._parsedTime = days;
-            this.timeUnity = days > 1 ? langs[this.lang].days.plural : langs[this.lang].days.singular;
+        else if (this._parsedTimestamp.days > 0) {
+            this._parsedTime = this._parsedTimestamp.days;
+            this.timeUnity = this._parsedTimestamp.days > 1 ? langs[this.lang].days.plural : langs[this.lang].days.singular;
         }
-        else if (hours > 0) {
-            this._parsedTime = hours;
-            this.timeUnity = hours > 1 ? langs[this.lang].hours.plural : langs[this.lang].hours.singular;
+        else if (this._parsedTimestamp.hours > 0) {
+            this._parsedTime = this._parsedTimestamp.hours;
+            this.timeUnity = this._parsedTimestamp.hours > 1 ? langs[this.lang].hours.plural : langs[this.lang].hours.singular;
         }
-        else if (minutes > 0) {
-            this._parsedTime = minutes;
-            this.timeUnity = minutes > 1 ? langs[this.lang].minutes.plural : langs[this.lang].minutes.singular;
+        else if (this._parsedTimestamp.minutes > 0) {
+            this._parsedTime = this._parsedTimestamp.minutes;
+            this.timeUnity = this._parsedTimestamp.minutes > 1 ? langs[this.lang].minutes.plural : langs[this.lang].minutes.singular;
         }
         else {
-            this._parsedTime = seconds;
-            this.timeUnity = seconds > 1 ? langs[this.lang].seconds.plural : langs[this.lang].seconds.singular;
+            this._parsedTime = this._parsedTimestamp.seconds;
+            this.timeUnity = this._parsedTimestamp.seconds > 1 ? langs[this.lang].seconds.plural : langs[this.lang].seconds.singular;
         }
 
         return this;

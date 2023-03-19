@@ -35,16 +35,28 @@ class Timestamper {
          */
         this._timestampPosition = Date.now() - timestamp;
 
+        Object.defineProperty(this, "_timestampPosition", {
+            enumerable: false
+        });
+
         /**
          * Relative timestamp in absolute value.
          * @private
          */
         this._timestamp = Math.abs(this._timestampPosition);
 
+        Object.defineProperty(this, "_timestamp", {
+            enumerable: false
+        });
+
         /**
          * @private
          */
         this._parsedTime = 0;
+
+        Object.defineProperty(this, "_parsedTime", {
+            enumerable: false
+        });
 
         /**
          * @private
@@ -60,6 +72,10 @@ class Timestamper {
             centuries: 0, 
             millenniums: 0
         };
+
+        Object.defineProperty(this, "_parsedTimestamp", {
+            enumerable: false
+        });
 
         this._parseTimestamp();
     }
@@ -217,6 +233,18 @@ class Timestamper {
      */
     getSeconds() {
         return this._parsedTimestamp.seconds;
+    }
+
+    /**
+     * Sets the Time.
+     * @param {number} timestamp Timestamp to apply.
+     */
+    setTime(timestamp) {
+        this.timestamp = timestamp;
+        this._timestampPosition = Date.now() - timestamp;
+        this._timestamp = Math.abs(this._timestampPosition);
+        this._parseTimestamp();
+        return this;
     }
 }
 

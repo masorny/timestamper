@@ -4,13 +4,13 @@ Converts **timestamp** into relative time.
 ```js
 const Timestamper = require("./Timestamper");
 
-const example_user = {
+const example_account = {
     name: "John",
     age: 18,
     createdAt: 1679246937679
 };
 
-const time = new Timestamper(example_user.createdAt);
+const time = new Timestamper(example_account.createdAt);
 
 console.log(time.toString());     // 2 days ago
 console.log(time.toStringTime()); // 2 days

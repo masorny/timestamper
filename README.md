@@ -73,9 +73,9 @@ As seen before, the code also can return a specific time unity as shown below.
 > console.log(time.getHours());    // 24
 > console.log(time.getDays());     // 1
 > 
-> console.log(time.toSeconds());
-> console.log(time.);
-> console.log(time.);
-> console.log(time.);
+> console.log(time.toSeconds());   // 86400 seconds
+> console.log(time.toMinutes());   // 1440 minutes
+> console.log(time.toHours);       // 24 hours
+> console.log(time.toDays);        // 1 day
 > ```
 > </details>

@@ -82,9 +82,27 @@ class Timestamper {
 
     /**
      * @private
+     * @param {number} x
+     * @param {{ singular: string, plural: string }} grammar
      */
     _getGrammar(x, grammar) {
-        return x > 1 ? grammar.plural : grammar.singular;
+        return x !== 1 ? grammar.plural : grammar.singular;
+    }
+
+    /**
+     * Returns the time position (Past, Present, Future).
+     * @private
+     */
+    _getPosition() {
+        if (this._parsedTime === 0) {
+            return langs[this.lang].now;
+        }
+
+        if (this._timestampPosition < 0) {
+            return langs[this.lang].inTime;
+        }
+
+        return langs[this.lang].agoTime;
     }
 
     /**
@@ -107,22 +125,6 @@ class Timestamper {
         this.timeUnity = this._getGrammar(n, langs[this.lang][key]);
 
         return this;
-    }
-
-    /**
-     * Returns the time position (Past, Present, Future).
-     * @private
-     */
-    _getPosition() {
-        if (this._parsedTime === 0) {
-            return langs[this.lang].now;
-        }
-
-        if (this._timestampPosition < 0) {
-            return langs[this.lang].inTime;
-        }
-
-        return langs[this.lang].agoTime;
     }
 
     /**
@@ -220,6 +222,48 @@ class Timestamper {
      */
     toStringTime() {
         return `${this._parsedTime} ${this.timeUnity}`;
+    }
+
+    /**
+     * Returns elapsed seconds as String.
+     */
+    toSeconds() {
+        return `${this._parsedTimestamp.seconds} ${this._getGrammar(this._parsedTimestamp.seconds, langs[this.lang].seconds)}`;
+    }
+
+    /**
+     * Returns elapsed minutes as String.
+     */
+    toMinutes() {
+        return `${this._parsedTimestamp.minutes} ${this._getGrammar(this._parsedTimestamp.minutes, langs[this.lang].minutes)}`;
+    }
+
+    /**
+     * Returns elapsed hours as String.
+     */
+    toHours() {
+        return `${this._parsedTimestamp.hours} ${this._getGrammar(this._parsedTimestamp.hours, langs[this.lang].hours)}`;
+    }
+
+    /**
+     * Returns elapsed days as String.
+     */
+    toDays() {
+        return `${this._parsedTimestamp.days} ${this._getGrammar(this._parsedTimestamp.days, langs[this.lang].days)}`;
+    }
+
+    /**
+     * Returns elapsed months as String.
+     */
+    toMonths() {
+        return `${this._parsedTimestamp.months} ${this._getGrammar(this._parsedTimestamp.months, langs[this.lang].months)}`;
+    }
+
+    /**
+     * Returns elapsed years as String.
+     */
+    toYears() {
+        return `${this._parsedTimestamp.years} ${this._getGrammar(this._parsedTimestamp.years, langs[this.lang].years)}`;
     }
 }
 

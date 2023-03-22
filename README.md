@@ -16,6 +16,8 @@ console.log(time.toString());     // 2 days ago
 console.log(time.toStringTime()); // 2 days
 ```
 
+~~sdfmlkdfm~~
+
 ## :small_blue_diamond: Available languages
 This code supports `3` languages as shown below.
 | Code abbreviation | Language  |

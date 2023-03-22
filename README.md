@@ -46,14 +46,20 @@ This code supports `3` languages as shown below.
 
 ## :small_blue_diamond: Extra functions
 As seen before, the code also can return a specific time unity as shown below.
-|      Code      |     Returns     |
-|----------------|-----------------|
-| `getSeconds`   | Elapsed seconds |
-| `getMinutes`   | Elapsed minutes |
-| `getHours`     | Elapsed hours   |
-| `getDays`      | Elapsed days    |
-| `getMonths`    | Elapsed months  |
-| `getYears`     | Elapsed years   |
+|      Code      |           Returns          |
+|----------------|----------------------------|
+| `getSeconds`   | Elapsed seconds            |
+| `getMinutes`   | Elapsed minutes            |
+| `getHours`     | Elapsed hours              |
+| `getDays`      | Elapsed days               |
+| `getMonths`    | Elapsed months             |
+| `getYears`     | Elapsed years              |
+| `toSeconds`    | Elapsed seconds as String  |
+| `toMinutes`    | Elapsed minutes as String  |
+| `toHours`      | Elapsed hours as String    |
+| `toDays`       | Elapsed days as String     |
+| `toMonths`     | Elapsed months as String   |
+| `toYears`      | Elapsed years as String    |
 ### :wrench: Example code
 > <details><summary><b>Click here to expand</b></summary>
 > 
@@ -66,5 +72,10 @@ As seen before, the code also can return a specific time unity as shown below.
 > console.log(time.getMinutes());  // 1440
 > console.log(time.getHours());    // 24
 > console.log(time.getDays());     // 1
+> 
+> console.log(time.toSeconds());
+> console.log(time.);
+> console.log(time.);
+> console.log(time.);
 > ```
 > </details>

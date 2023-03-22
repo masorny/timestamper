@@ -46,10 +46,6 @@ class Timestamper {
          */
         this._parsedTime = 0;
 
-        Object.defineProperty(this, "_parsedTime", {
-            enumerable: false
-        });
-
         /**
          * @private
          */

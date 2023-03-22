@@ -185,9 +185,9 @@ class Timestamper {
      * Returns simplest readable time.
      * @example
      * Timestamper.toStringTime() = "now"
-     * Timestamper.toStringTime() = "1 minute ago"
-     * Timestamper.toStringTime() = "2 minutes ago"
-     * Timestamper.toStringTime() = "1 day ago"
+     * Timestamper.toStringTime() = "1 minute"
+     * Timestamper.toStringTime() = "2 minutes"
+     * Timestamper.toStringTime() = "1 day"
      */
     toStringTime() {
         return `${this._parsedTime} ${this.timeUnity}`;

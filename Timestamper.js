@@ -110,7 +110,7 @@ class Timestamper {
 
         const [ key, x ] = Object.entries(data).reverse().find(([k, x]) => x !== 0) ?? ["seconds", 0];
 
-        this._parsedTime = n;
+        this._parsedTime = x;
         this.timeUnity = this._getGrammar(x, langs[this.lang][key]);
 
         return this;

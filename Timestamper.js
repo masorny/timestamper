@@ -89,15 +89,7 @@ class Timestamper {
      * @private
      */
     _getPosition() {
-        if (this._parsedTime === 0) {
-            return langs[this.lang].now;
-        }
-
-        if (this._timestampPosition < 0) {
-            return langs[this.lang].inTime;
-        }
-
-        return langs[this.lang].agoTime;
+        return this._parsedTime === 0 ? langs[this.lang].now : this._timestampPosition < 0 ? langs[this.lang].inTime : langs[this.lang].agoTime;
     }
 
     /**
@@ -116,7 +108,7 @@ class Timestamper {
         data.centuries   = Math.floor(this._parsedTimestamp.decades / 10);
         data.millenniums = Math.floor(this._parsedTimestamp.centuries / 10);
 
-        const [ key, x ] = Object.entries(data).reverse().find(([k, n]) => n !== 0) ?? ["seconds", 0];
+        const [ key, x ] = Object.entries(data).reverse().find(([k, x]) => x !== 0) ?? ["seconds", 0];
 
         this._parsedTime = n;
         this.timeUnity = this._getGrammar(x, langs[this.lang][key]);

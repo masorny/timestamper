@@ -101,42 +101,10 @@ class Timestamper {
         this._parsedTimestamp.centuries   = Math.floor(this._parsedTimestamp.decades / 10);
         this._parsedTimestamp.millenniums = Math.floor(this._parsedTimestamp.centuries / 10);
 
-        if (this._parsedTimestamp.millenniums > 0) {
-            this._parsedTime = this._parsedTimestamp.millenniums;
-            this.timeUnity = this._getGrammar(this._parsedTimestamp.millenniums, langs[this.lang].millenniums);
-        }
-        else if (this._parsedTimestamp.centuries > 0) {
-            this._parsedTime = this._parsedTimestamp.centuries;
-            this.timeUnity = this._getGrammar(this._parsedTimestamp.centuries, langs[this.lang].centuries);
-        }
-        else if (this._parsedTimestamp.decades > 0) {
-            this._parsedTime = this._parsedTimestamp.decades;
-            this.timeUnity = this._getGrammar(this._parsedTimestamp.decades, langs[this.lang].decades);
-        }
-        else if (this._parsedTimestamp.years > 0) {
-            this._parsedTime = this._parsedTimestamp.years;
-            this.timeUnity = this._getGrammar(this._parsedTimestamp.years, langs[this.lang].years);
-        }
-        else if (this._parsedTimestamp.months > 0) {
-            this._parsedTime = this._parsedTimestamp.months;
-            this.timeUnity = this._getGrammar(this._parsedTimestamp.months, langs[this.lang].months);
-        }
-        else if (this._parsedTimestamp.days > 0) {
-            this._parsedTime = this._parsedTimestamp.days;
-            this.timeUnity = this._getGrammar(this._parsedTimestamp.days, langs[this.lang].days);
-        }
-        else if (this._parsedTimestamp.hours > 0) {
-            this._parsedTime = this._parsedTimestamp.hours;
-            this.timeUnity = this._getGrammar(this._parsedTimestamp.hours, langs[this.lang].hours);
-        }
-        else if (this._parsedTimestamp.minutes > 0) {
-            this._parsedTime = this._parsedTimestamp.minutes;
-            this.timeUnity = this._getGrammar(this._parsedTimestamp.minutes, langs[this.lang].minutes);
-        }
-        else {
-            this._parsedTime = this._parsedTimestamp.seconds;
-            this.timeUnity = this._getGrammar(this._parsedTimestamp.seconds, langs[this.lang].seconds);
-        }
+        const [ key, n ] = Object.entries(this._parsedTimestamp).reverse().find(([k, n]) => n !== 0);
+
+        this._parsedTime = n;
+        this.timeUnity = this._getGrammar(n, langs[this.lang][key]);
 
         return this;
     }

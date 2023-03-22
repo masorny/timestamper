@@ -14,9 +14,12 @@ const time = new Timestamper(example_account.createdAt);
 
 console.log(time.toString());     // 2 days ago
 console.log(time.toStringTime()); // 2 days
-```
 
-> _You can also change the timestamp by using `time.setTime()` method._
+// Also you can change the timestamp.
+time.setTime(Date.now());
+
+console.log(time.toString()); // now
+```
 
 ## :small_blue_diamond: Available languages
 This code supports `3` languages as shown below.

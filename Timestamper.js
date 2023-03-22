@@ -119,7 +119,7 @@ class Timestamper {
         this._parsedTimestamp.centuries   = Math.floor(this._parsedTimestamp.decades / 10);
         this._parsedTimestamp.millenniums = Math.floor(this._parsedTimestamp.centuries / 10);
 
-        const [ key, n ] = Object.entries(this._parsedTimestamp).reverse().find(([k, n]) => n !== 0);
+        const [ key, n ] = Object.entries(this._parsedTimestamp).reverse().find(([k, n]) => n !== 0) ?? ["seconds", 0];
 
         this._parsedTime = n;
         this.timeUnity = this._getGrammar(n, langs[this.lang][key]);
@@ -226,6 +226,8 @@ class Timestamper {
 
     /**
      * Returns elapsed seconds as String.
+     * @example
+     * Timestamper.toSeconds(); // 10 seconds
      */
     toSeconds() {
         return `${this._parsedTimestamp.seconds} ${this._getGrammar(this._parsedTimestamp.seconds, langs[this.lang].seconds)}`;
@@ -233,6 +235,8 @@ class Timestamper {
 
     /**
      * Returns elapsed minutes as String.
+     * @example
+     * Timestamper.toMinutes(); // 10 minutes
      */
     toMinutes() {
         return `${this._parsedTimestamp.minutes} ${this._getGrammar(this._parsedTimestamp.minutes, langs[this.lang].minutes)}`;
@@ -240,6 +244,8 @@ class Timestamper {
 
     /**
      * Returns elapsed hours as String.
+     * @example
+     * Timestamper.toHours(); // 10 hours
      */
     toHours() {
         return `${this._parsedTimestamp.hours} ${this._getGrammar(this._parsedTimestamp.hours, langs[this.lang].hours)}`;
@@ -247,6 +253,8 @@ class Timestamper {
 
     /**
      * Returns elapsed days as String.
+     * @example
+     * Timestamper.toDays(); // 10 days
      */
     toDays() {
         return `${this._parsedTimestamp.days} ${this._getGrammar(this._parsedTimestamp.days, langs[this.lang].days)}`;
@@ -254,6 +262,8 @@ class Timestamper {
 
     /**
      * Returns elapsed months as String.
+     * @example
+     * Timestamper.toMonths(); // 10 months
      */
     toMonths() {
         return `${this._parsedTimestamp.months} ${this._getGrammar(this._parsedTimestamp.months, langs[this.lang].months)}`;
@@ -261,6 +271,8 @@ class Timestamper {
 
     /**
      * Returns elapsed years as String.
+     * @example
+     * Timestamper.toYears(); // 10 years
      */
     toYears() {
         return `${this._parsedTimestamp.years} ${this._getGrammar(this._parsedTimestamp.years, langs[this.lang].years)}`;

@@ -68,6 +68,7 @@ As seen before, the code also can return a specific time unity as shown below.
 | `toYears`      | Elapsed years as String    |
 ### :wrench: Example code
 > <details><summary><b>Click here to expand</b></summary>
+> <br/>
 > 
 > ```js
 > const example_date = new Date(); // A day ago as example

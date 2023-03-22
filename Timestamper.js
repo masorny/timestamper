@@ -83,6 +83,13 @@ class Timestamper {
     /**
      * @private
      */
+    _getGrammar(x, grammar) {
+        return x > 1 ? grammar.plural : grammar.singular;
+    }
+
+    /**
+     * @private
+     */
     _parseTimestamp() {
         this._parsedTimestamp.seconds     = Math.floor(this._timestamp / 1000);
         this._parsedTimestamp.minutes     = Math.floor(this._parsedTimestamp.seconds / 60);
@@ -96,39 +103,39 @@ class Timestamper {
 
         if (this._parsedTimestamp.millenniums > 0) {
             this._parsedTime = this._parsedTimestamp.millenniums;
-            this.timeUnity = this._parsedTimestamp.millenniums > 1 ? langs[this.lang].millenniums.plural : langs[this.lang].millenniums.singular;
+            this.timeUnity = this._getGrammar(this._parsedTimestamp.millenniums, langs[this.lang].millenniums);
         }
         else if (this._parsedTimestamp.centuries > 0) {
             this._parsedTime = this._parsedTimestamp.centuries;
-            this.timeUnity = this._parsedTimestamp.centuries > 1 ? langs[this.lang].centuries.plural : langs[this.lang].centuries.singular;
+            this.timeUnity = this._getGrammar(this._parsedTimestamp.centuries, langs[this.lang].centuries);
         }
         else if (this._parsedTimestamp.decades > 0) {
             this._parsedTime = this._parsedTimestamp.decades;
-            this.timeUnity = this._parsedTimestamp.decades > 1 ? langs[this.lang].decades.plural : langs[this.lang].decades.singular;
+            this.timeUnity = this._getGrammar(this._parsedTimestamp.decades, langs[this.lang].decades);
         }
         else if (this._parsedTimestamp.years > 0) {
             this._parsedTime = this._parsedTimestamp.years;
-            this.timeUnity = this._parsedTimestamp.years > 1 ? langs[this.lang].years.plural : langs[this.lang].years.singular;
+            this.timeUnity = this._getGrammar(this._parsedTimestamp.years, langs[this.lang].years);
         }
         else if (this._parsedTimestamp.months > 0) {
             this._parsedTime = this._parsedTimestamp.months;
-            this.timeUnity = this._parsedTimestamp.months > 1 ? langs[this.lang].months.plural : langs[this.lang].months.singular;
+            this.timeUnity = this._getGrammar(this._parsedTimestamp.months, langs[this.lang].months);
         }
         else if (this._parsedTimestamp.days > 0) {
             this._parsedTime = this._parsedTimestamp.days;
-            this.timeUnity = this._parsedTimestamp.days > 1 ? langs[this.lang].days.plural : langs[this.lang].days.singular;
+            this.timeUnity = this._getGrammar(this._parsedTimestamp.days, langs[this.lang].days);
         }
         else if (this._parsedTimestamp.hours > 0) {
             this._parsedTime = this._parsedTimestamp.hours;
-            this.timeUnity = this._parsedTimestamp.hours > 1 ? langs[this.lang].hours.plural : langs[this.lang].hours.singular;
+            this.timeUnity = this._getGrammar(this._parsedTimestamp.hours, langs[this.lang].hours);
         }
         else if (this._parsedTimestamp.minutes > 0) {
             this._parsedTime = this._parsedTimestamp.minutes;
-            this.timeUnity = this._parsedTimestamp.minutes > 1 ? langs[this.lang].minutes.plural : langs[this.lang].minutes.singular;
+            this.timeUnity = this._getGrammar(this._parsedTimestamp.minutes, langs[this.lang].minutes);
         }
         else {
             this._parsedTime = this._parsedTimestamp.seconds;
-            this.timeUnity = this._parsedTimestamp.seconds > 1 ? langs[this.lang].seconds.plural : langs[this.lang].seconds.singular;
+            this.timeUnity = this._getGrammar(this._parsedTimestamp.seconds, langs[this.lang].seconds);
         }
 
         return this;

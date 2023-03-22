@@ -151,49 +151,6 @@ class Timestamper {
     }
 
     /**
-     * Returns readable time.
-     * @example
-     * Timestamper.toString() = "now"
-     * Timestamper.toString() = "1 minute ago"
-     * Timestamper.toString() = "2 minutes ago"
-     * Timestamper.toString() = "1 day ago"
-     */
-    toString() {
-        if (this._parsedTime == 0) {
-            return langs[this.lang].now;
-        }
-
-        switch(this.lang) {
-            case "en":
-                if (this._timestampPosition < 0) {
-                    return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
-                }
-
-                return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
-            case "pt":
-                if (this._timestampPosition < 0) {
-                    return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
-                }
-
-                return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
-        }
-
-        return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
-    }
-
-    /**
-     * Returns simplest readable time.
-     * @example
-     * Timestamper.toStringTime() = "now"
-     * Timestamper.toStringTime() = "1 minute"
-     * Timestamper.toStringTime() = "2 minutes"
-     * Timestamper.toStringTime() = "1 day"
-     */
-    toStringTime() {
-        return `${this._parsedTime} ${this.timeUnity}`;
-    }
-
-    /**
      * Returns elapsed Years.
      */
     getYears() {
@@ -245,6 +202,49 @@ class Timestamper {
         this._timestamp = Math.abs(this._timestampPosition);
         this._parseTimestamp();
         return this;
+    }
+
+    /**
+     * Returns readable time.
+     * @example
+     * Timestamper.toString() = "now"
+     * Timestamper.toString() = "1 minute ago"
+     * Timestamper.toString() = "2 minutes ago"
+     * Timestamper.toString() = "1 day ago"
+     */
+    toString() {
+        if (this._parsedTime == 0) {
+            return langs[this.lang].now;
+        }
+
+        switch(this.lang) {
+            case "en":
+                if (this._timestampPosition < 0) {
+                    return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
+                }
+
+                return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
+            case "pt":
+                if (this._timestampPosition < 0) {
+                    return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
+                }
+
+                return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
+        }
+
+        return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
+    }
+
+    /**
+     * Returns simplest readable time.
+     * @example
+     * Timestamper.toStringTime() = "now"
+     * Timestamper.toStringTime() = "1 minute"
+     * Timestamper.toStringTime() = "2 minutes"
+     * Timestamper.toStringTime() = "1 day"
+     */
+    toStringTime() {
+        return `${this._parsedTime} ${this.timeUnity}`;
     }
 }
 

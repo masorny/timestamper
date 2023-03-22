@@ -31,7 +31,8 @@ This code supports `3` languages as shown below.
 
 ### :wrench: Example codes
 > <details><summary><b>Click here to expand</b></summary>
->
+> <br/>
+> 
 > ```js
 > const time = new Timestamper(Date.now(), "en");
 > 

@@ -99,14 +99,14 @@ class Timestamper {
         const data = this._parsedTimestamp;
 
         data.seconds     = Math.floor(this._timestamp / 1000);
-        data.minutes     = Math.floor(this._parsedTimestamp.seconds / 60);
-        data.hours       = Math.floor(this._parsedTimestamp.minutes / 60);
-        data.days        = Math.floor(this._parsedTimestamp.hours / 24);
-        data.months      = Math.floor(this._parsedTimestamp.days / (365 / 12));
-        data.years       = Math.floor(this._parsedTimestamp.months / 12);
-        data.decades     = Math.floor(this._parsedTimestamp.years / 10);
-        data.centuries   = Math.floor(this._parsedTimestamp.decades / 10);
-        data.millenniums = Math.floor(this._parsedTimestamp.centuries / 10);
+        data.minutes     = Math.floor(data.seconds / 60);
+        data.hours       = Math.floor(data.minutes / 60);
+        data.days        = Math.floor(data.hours / 24);
+        data.months      = Math.floor(data.days / (365 / 12));
+        data.years       = Math.floor(data.months / 12);
+        data.decades     = Math.floor(data.years / 10);
+        data.centuries   = Math.floor(data.decades / 10);
+        data.millenniums = Math.floor(data.centuries / 10);
 
         const [ key, x ] = Object.entries(data).reverse().find(([k, x]) => x !== 0) ?? ["seconds", 0];
 

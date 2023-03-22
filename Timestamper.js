@@ -104,20 +104,22 @@ class Timestamper {
      * @private
      */
     _parseTimestamp() {
-        this._parsedTimestamp.seconds     = Math.floor(this._timestamp / 1000);
-        this._parsedTimestamp.minutes     = Math.floor(this._parsedTimestamp.seconds / 60);
-        this._parsedTimestamp.hours       = Math.floor(this._parsedTimestamp.minutes / 60);
-        this._parsedTimestamp.days        = Math.floor(this._parsedTimestamp.hours / 24);
-        this._parsedTimestamp.months      = Math.floor(this._parsedTimestamp.days / (365 / 12));
-        this._parsedTimestamp.years       = Math.floor(this._parsedTimestamp.months / 12);
-        this._parsedTimestamp.decades     = Math.floor(this._parsedTimestamp.years / 10);
-        this._parsedTimestamp.centuries   = Math.floor(this._parsedTimestamp.decades / 10);
-        this._parsedTimestamp.millenniums = Math.floor(this._parsedTimestamp.centuries / 10);
+        const data = this._parsedTimestamp;
 
-        const [ key, n ] = Object.entries(this._parsedTimestamp).reverse().find(([k, n]) => n !== 0) ?? ["seconds", 0];
+        data.seconds     = Math.floor(this._timestamp / 1000);
+        data.minutes     = Math.floor(this._parsedTimestamp.seconds / 60);
+        data.hours       = Math.floor(this._parsedTimestamp.minutes / 60);
+        data.days        = Math.floor(this._parsedTimestamp.hours / 24);
+        data.months      = Math.floor(this._parsedTimestamp.days / (365 / 12));
+        data.years       = Math.floor(this._parsedTimestamp.months / 12);
+        data.decades     = Math.floor(this._parsedTimestamp.years / 10);
+        data.centuries   = Math.floor(this._parsedTimestamp.decades / 10);
+        data.millenniums = Math.floor(this._parsedTimestamp.centuries / 10);
+
+        const [ key, x ] = Object.entries(data).reverse().find(([k, n]) => n !== 0) ?? ["seconds", 0];
 
         this._parsedTime = n;
-        this.timeUnity = this._getGrammar(n, langs[this.lang][key]);
+        this.timeUnity = this._getGrammar(x, langs[this.lang][key]);
 
         return this;
     }

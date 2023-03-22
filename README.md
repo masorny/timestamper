@@ -54,6 +54,9 @@ As seen before, the code also can return a specific time unity as shown below.
 | `getDays`      | Elapsed days               |
 | `getMonths`    | Elapsed months             |
 | `getYears`     | Elapsed years              |
+
+|      Code      |           Returns          |
+|----------------|----------------------------|
 | `toSeconds`    | Elapsed seconds as String  |
 | `toMinutes`    | Elapsed minutes as String  |
 | `toHours`      | Elapsed hours as String    |

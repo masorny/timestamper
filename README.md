@@ -46,23 +46,15 @@ This code supports `3` languages as shown below.
 
 ## :small_blue_diamond: Extra functions
 As seen before, the code also can return a specific time unity as shown below.
-|      Code      |           Returns          |
-|----------------|----------------------------|
-| `getSeconds`   | Elapsed seconds            |
-| `getMinutes`   | Elapsed minutes            |
-| `getHours`     | Elapsed hours              |
-| `getDays`      | Elapsed days               |
-| `getMonths`    | Elapsed months             |
-| `getYears`     | Elapsed years              |
+|      Code      |           Returns          | |      Code      |           Returns          |
+|----------------|----------------------------| |----------------|----------------------------|
+| `getSeconds`   | Elapsed seconds            | | `toSeconds`    | Elapsed seconds as String  |
+| `getMinutes`   | Elapsed minutes            | | `toMinutes`    | Elapsed minutes as String  |
+| `getHours`     | Elapsed hours              | | `toHours`      | Elapsed hours as String    |
+| `getDays`      | Elapsed days               | | `toDays`       | Elapsed days as String     |
+| `getMonths`    | Elapsed months             | | `toMonths`     | Elapsed months as String   |
+| `getYears`     | Elapsed years              | | `toYears`      | Elapsed years as String    |
 
-|      Code      |           Returns          |
-|----------------|----------------------------|
-| `toSeconds`    | Elapsed seconds as String  |
-| `toMinutes`    | Elapsed minutes as String  |
-| `toHours`      | Elapsed hours as String    |
-| `toDays`       | Elapsed days as String     |
-| `toMonths`     | Elapsed months as String   |
-| `toYears`      | Elapsed years as String    |
 ### :wrench: Example code
 > <details><summary><b>Click here to expand</b></summary>
 > 

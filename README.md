@@ -18,7 +18,8 @@ console.log(time.toStringTime()); // 2 days
 // You can also change the timestamp.
 time.setTime(Date.now());
 
-console.log(time.toString()); // now
+console.log(time.toString());     // now
+console.log(time.toStringTime()); // 0 seconds
 ```
 
 ## :small_blue_diamond: Available languages

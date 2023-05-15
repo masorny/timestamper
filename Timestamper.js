@@ -198,6 +198,10 @@ class Timestamper {
         return `${this._parsedTime} ${this.timeUnity}`;
     }
 
+    toCounter() {
+        return [this.getYears(), this.getMonths(), this.getDays(), this.getHours(), this.getMinutes(), this.getSeconds()].filter(x => x !== 0);
+    }
+
     /**
      * Returns elapsed seconds as String.
      * @example

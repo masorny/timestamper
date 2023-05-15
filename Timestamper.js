@@ -199,7 +199,32 @@ class Timestamper {
     }
 
     toCounter() {
-        return [this.getYears(), this.getMonths(), this.getDays(), this.getHours(), this.getMinutes(), this.getSeconds()].filter(x => x !== 0);
+        var l = [this.getYears(), this.getMonths(), this.getDays(), this.getHours(), this.getMinutes(), this.getSeconds()];
+        
+        return l.filter(x => x !== 0)
+        .map((x, i, a) => {
+            i += l.length - a.length;
+            var dx;
+
+            if (i === 1) {
+                dx = x % 12
+            }
+            else if (i === 2) {
+                dx = x % 365 / 12
+            }
+            else if (i === 3) {
+                dx = x % 24
+            }
+            else if ([4, 5].includes(i)) {
+                dx = x % 60
+            }
+            else {
+                dx = x
+            }
+
+            return dx < 10 ? `0${dx}` : dx;
+        })
+        .join(":");
     }
 
     /**

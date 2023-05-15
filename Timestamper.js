@@ -180,7 +180,6 @@ class Timestamper {
 
         // English and Portuguese has the same format.
         if ([langsType.ENGLISH, langsType.PORTUGUESE].includes(this.lang) && this._timestampPosition >= 0) {
-            //if (this._timestampPosition < 0) return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
             return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
         }
 

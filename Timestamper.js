@@ -178,7 +178,9 @@ class Timestamper {
             return langs[this.lang].now;
         }
 
-        switch(this.lang) {
+        var pos = [ this._getPosition(), this._parsedTime, this.timeUnity ];
+
+/*         switch(this.lang) {
             case langsType.ENGLISH:
                 if (this._timestampPosition < 0) {
                     return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
@@ -191,9 +193,12 @@ class Timestamper {
                 }
 
                 return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
-        }
+        } */
 
-        return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
+        if ([langsType.ENGLISH, langsType.PORTUGUESE].includes(this.lang) && this._timestampPosition >= 0) pos.reverse();
+
+        //return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
+        return pos.join(" ");
     }
 
     /**

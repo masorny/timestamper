@@ -1,20 +1,18 @@
+const langsType = require("./langsType");
+
 const langs = {
-    en: require("./langs/en.json"),
-    es: require("./langs/es.json"),
-    pt: require("./langs/pt.json")
+    [langsType.ENGLISH]: require("./langs/en.json"),
+    [langsType.SPANISH]: require("./langs/es.json"),
+    [langsType.PORTUGUESE]: require("./langs/pt.json")
 };
 
 class Timestamper {
     /**
-     * @typedef {"es"|"en"|"pt"} Languages
-     */
-
-    /**
      * Creates a new Instance of Timestamp.
      * @param {number} timestamp Timestamp in milliseconds.
-     * @param {Languages} [lang] Language time (set by default as `es`).
+     * @param {string} [lang] Language time (set by default as `es`).
      */
-    constructor(timestamp, lang = "es") {
+    constructor(timestamp, lang = langsType.ENGLISH) {
         if ((!timestamp && typeof timestamp !== 'number') || isNaN(timestamp) || !isFinite(timestamp)) {
             throw new Error('Invalid Timestamp');
         }
@@ -104,7 +102,7 @@ class Timestamper {
         data.centuries   = Math.floor(data.decades / 10);
         data.millenniums = Math.floor(data.centuries / 10);
 
-        const [ key, x ] = Object.entries(data).reverse().find(([k, x]) => x !== 0) ?? ["seconds", 0];
+        const [ key, x ] = Object.entries(data).reverse().find(([_, x]) => x !== 0) ?? ["seconds", 0];
 
         this._parsedTime = x;
         this.timeUnity = this._getGrammar(x, langs[this.lang][key]);
@@ -163,6 +161,7 @@ class Timestamper {
         this._timestampPosition = Date.now() - timestamp;
         this._timestamp = Math.abs(this._timestampPosition);
         this._parseTimestamp();
+
         return this;
     }
 
@@ -180,13 +179,13 @@ class Timestamper {
         }
 
         switch(this.lang) {
-            case "en":
+            case langsType.ENGLISH:
                 if (this._timestampPosition < 0) {
                     return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
                 }
 
                 return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
-            case "pt":
+            case langsType.PORTUGUESE:
                 if (this._timestampPosition < 0) {
                     return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
                 }

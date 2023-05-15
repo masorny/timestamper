@@ -178,27 +178,13 @@ class Timestamper {
             return langs[this.lang].now;
         }
 
-        var pos = [ this._getPosition(), this._parsedTime, this.timeUnity ];
+        // English and Portuguese has the same format.
+        if ([langsType.ENGLISH, langsType.PORTUGUESE].includes(this.lang) && this._timestampPosition >= 0) {
+            //if (this._timestampPosition < 0) return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
+            return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
+        }
 
-/*         switch(this.lang) {
-            case langsType.ENGLISH:
-                if (this._timestampPosition < 0) {
-                    return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
-                }
-
-                return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
-            case langsType.PORTUGUESE:
-                if (this._timestampPosition < 0) {
-                    return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
-                }
-
-                return `${this._parsedTime} ${this.timeUnity} ${this._getPosition()}`;
-        } */
-
-        if ([langsType.ENGLISH, langsType.PORTUGUESE].includes(this.lang) && this._timestampPosition >= 0) pos.reverse();
-
-        //return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
-        return pos.join(" ");
+        return `${this._getPosition()} ${this._parsedTime} ${this.timeUnity}`;
     }
 
     /**

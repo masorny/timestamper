@@ -1,4 +1,5 @@
-const langsType = require("./langsType");
+const langsType = require("./constants/langsType");
+const timeUnits = require("./constants/timeConversion");
 
 const langs = {
     [langsType.ENGLISH]: require("./langs/en.json"),
@@ -93,14 +94,14 @@ class Timestamper {
         const data = this._parsedTimestamp;
 
         data.seconds     = Math.floor(this._timestamp / 1000);
-        data.minutes     = Math.floor(data.seconds / 60);
-        data.hours       = Math.floor(data.minutes / 60);
-        data.days        = Math.floor(data.hours / 24);
-        data.months      = Math.floor(data.days / (365 / 12));
-        data.years       = Math.floor(data.months / 12);
-        data.decades     = Math.floor(data.years / 10);
-        data.centuries   = Math.floor(data.decades / 10);
-        data.millenniums = Math.floor(data.centuries / 10);
+        data.minutes     = Math.floor(data.seconds / timeUnits[0]);
+        data.hours       = Math.floor(data.minutes / timeUnits[1]);
+        data.days        = Math.floor(data.hours / timeUnits[2]);
+        data.months      = Math.floor(data.days / timeUnits[3]);
+        data.years       = Math.floor(data.months / timeUnits[4]);
+        data.decades     = Math.floor(data.years / timeUnits[5]);
+        data.centuries   = Math.floor(data.decades / timeUnits[6]);
+        data.millenniums = Math.floor(data.centuries / timeUnits[7]);
 
         const [ key, x ] = Object.entries(data).reverse().find(([_, x]) => x !== 0) ?? ["seconds", 0];
 
@@ -208,18 +209,10 @@ class Timestamper {
      */
     toCounter() {
         var l = [this.getYears(), this.getMonths(), this.getDays(), this.getHours(), this.getMinutes(), this.getSeconds()];
-
-        const constants = {
-            1: 12,
-            2: 365 / 12,
-            3: 24,
-            4: 60,
-            5: 60
-        };
         
         return l.filter(x => x !== 0)
             .map((x, i, a) => {
-                var dx = Math.round(x % constants[i + l.length - a.length]);
+                var dx = Math.round(x % timeUnits[l.length - 1 - (i + l.length - a.length)]);
                     dx = isNaN(dx) ? x : dx;
 
                 return dx < 10 ? `0${dx}` : dx;

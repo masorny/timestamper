@@ -208,9 +208,10 @@ class Timestamper {
      * Timestamper.toCounter() = "1:00:00:00" // 1 day
      */
     toCounter() {
-        var l = [this.getYears(), this.getMonths(), this.getDays(), this.getHours(), this.getMinutes(), this.getSeconds()];
-        
-        return l.filter(x => x !== 0)
+        return Object.values(this._parsedTimestamp)
+            .slice(0, 6)
+            .reverse()
+            .filter(x => x !== 0)
             .map((x, i, a) => {
                 var dx = Math.round(x % timeUnits[l.length - 1 - (i + l.length - a.length)]);
                     dx = isNaN(dx) ? x : dx;

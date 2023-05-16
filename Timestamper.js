@@ -199,6 +199,35 @@ class Timestamper {
     }
 
     /**
+     * Returns Counter time.
+     * @example
+     * Timestamper.toCounter() = "00:00"      // now
+     * Timestamper.toCounter() = "01:00"      // 1 minute
+     * Timestamper.toCounter() = "02:00"      // 2 minutes
+     * Timestamper.toCounter() = "1:00:00:00" // 1 day
+     */
+    toCounter() {
+        var l = [this.getYears(), this.getMonths(), this.getDays(), this.getHours(), this.getMinutes(), this.getSeconds()];
+
+        const constants = {
+            1: 12,
+            2: 365 / 12,
+            3: 24,
+            4: 60,
+            5: 60
+        };
+        
+        return l.filter(x => x !== 0)
+            .map((x, i, a) => {
+                var dx = Math.round(x % constants[i + l.length - a.length]);
+                    dx = isNaN(dx) ? x : dx;
+
+                return dx < 10 ? `0${dx}` : dx;
+            })
+            .join(":");
+    }
+
+    /**
      * Returns elapsed seconds as String.
      * @example
      * Timestamper.toSeconds(); // 10 seconds

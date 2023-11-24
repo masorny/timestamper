@@ -1,5 +1,3 @@
-const timeUnits = require("./constants/timeConversion");
-
 const langdef = Object.freeze({
     ENGLISH: "en",
     SPANISH: "es",
@@ -12,8 +10,19 @@ const langs = {
     [langdef.PORTUGUESE]: require("./langs/pt.json")
 };
 
+const timeUnits = Object.freeze({
+    0: 60,
+    1: 60,
+    2: 24,
+    3: 365 / 12,
+    4: 12,
+    5: 10,
+    6: 10,
+    7: 10
+});
+
 class Timestamper {
-    /**
+    /*
      * Creates a new Instance of Timestamp.
      * @param {number} timestamp Timestamp in milliseconds.
      * @param {string} [lang] Language time (set by default as `es`).

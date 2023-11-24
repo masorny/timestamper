@@ -1,10 +1,15 @@
-const langsType = require("./constants/langsType");
 const timeUnits = require("./constants/timeConversion");
 
+const langdef = Object.freeze({
+    ENGLISH: "en",
+    SPANISH: "es",
+    PORTUGUESE: "pt"
+});
+
 const langs = {
-    [langsType.ENGLISH]: require("./langs/en.json"),
-    [langsType.SPANISH]: require("./langs/es.json"),
-    [langsType.PORTUGUESE]: require("./langs/pt.json")
+    [langdef.ENGLISH]:    require("./langs/en.json"),
+    [langdef.SPANISH]:    require("./langs/es.json"),
+    [langdef.PORTUGUESE]: require("./langs/pt.json")
 };
 
 class Timestamper {
@@ -13,7 +18,7 @@ class Timestamper {
      * @param {number} timestamp Timestamp in milliseconds.
      * @param {string} [lang] Language time (set by default as `es`).
      */
-    constructor(timestamp, lang = langsType.ENGLISH) {
+    constructor(timestamp, lang = langdef.ENGLISH) {
         if ((!timestamp && typeof timestamp !== 'number') || isNaN(timestamp) || !isFinite(timestamp)) {
             throw new Error('Invalid Timestamp');
         }

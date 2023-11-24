@@ -86,7 +86,7 @@ class Timestamper {
      * @private
      */
     _validateEntry(timestampEntry) {
-        if (!timestamp && typeof timestamp !== 'number') {
+        if (!timestampEntry && typeof timestampEntry !== 'number') {
             throw new Error(`Timestamp must be a number. Received ${timestampEntry}`);
         }
 

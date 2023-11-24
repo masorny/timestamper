@@ -28,9 +28,7 @@ class Timestamper {
      * @param {string} [lang] Language time (set by default as `es`).
      */
     constructor(timestamp, lang = langdef.ENGLISH) {
-        if ((!timestamp && typeof timestamp !== 'number') || isNaN(timestamp) || !isFinite(timestamp)) {
-            throw new Error('Invalid Timestamp');
-        }
+        this._validateEntry(timestamp);
 
         /**
          * Time language.
@@ -82,6 +80,23 @@ class Timestamper {
         });
 
         this._parseTimestamp();
+    }
+
+    /**
+     * @private
+     */
+    _validateEntry(timestampEntry) {
+        if (!timestamp && typeof timestamp !== 'number') {
+            throw new Error(`Timestamp must be a number. Received ${timestampEntry}`);
+        }
+
+        if (isNaN(timestampEntry)) {
+            throw new Error("Timestamp cannot be NaN.");
+        }
+
+        if (!isFinite(timestamp)) {
+            throw new Error("Timestamp must be a finite number. Received Infinity.");
+        }
     }
 
     /**
